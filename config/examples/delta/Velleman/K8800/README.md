@@ -30,7 +30,8 @@ The firmware here is for the stock Velleman K8800, without any modifications. Fo
 
 ## WARNINGS
 
-**NOTE: UBL REQUIRES CHANGES TO THE CURA CONFIGURATION (SEE BELOW)**
+> [!IMPORTANT]
+> UBL REQUIRES CHANGES TO THE CURA CONFIGURATION (SEE BELOW)
 
 I use this configuration of the Marlin firmware now on an almost daily basis for both small and large prints, but you will no doubt encounter use cases I do not, and may therefore find bugs I have missed. The K8800 is particularly unforgiving of your supposed mistakes and I make no warranty of any kind that this firmware will work correctly for you. Start small and work up, use slower settings on Cura, especially for larger prints.
 
@@ -55,7 +56,10 @@ Bilinear Leveling uses the same approach as the original firmware, with the adva
 
 ## Unified Bed Leveling and Cura
 
-Unified Bed Leveling is more accurate due to the addition of manual probing, but requires changes to the Cura settings. **AT THIS TIME OF WRITING, THE AS-SHIPPED CURA PROFILE INCLUDES G-CODE COMMANDS THAT ARE INCOMPATIBLE WITH UBL AND IN ONE CASE MAY FORCE A HEAD CRASH DURING PREFLIGHT.**
+Unified Bed Leveling is more accurate due to the addition of manual probing, but requires changes to the Cura settings.
+
+> [!IMPORTANT]
+> AT THIS TIME OF WRITING, THE AS-SHIPPED CURA PROFILE INCLUDES G-CODE COMMANDS THAT ARE INCOMPATIBLE WITH UBL AND IN ONE CASE MAY FORCE A HEAD CRASH DURING PREFLIGHT.
 
 Here is my amended version of the Start G-Code from Cura. To use this in Cura, go to:
 
@@ -63,7 +67,7 @@ Here is my amended version of the Start G-Code from Cura. To use this in Cura, g
 
 And paste in the following:
 
-```
+```gcode
 ; Vertex Delta Start Gcode
 M400
 G28 ; Home extruder

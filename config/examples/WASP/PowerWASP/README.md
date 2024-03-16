@@ -23,7 +23,7 @@ With the option of wireless file upload to the SD card, the idea of updating the
 
 ## USB and SDCARD Firmware flashing for the ARDUINO ATMEGA 2560 and ADK
 
-The bootloader looks for byte in eeprom at address 0x3FF:
+The bootloader looks for byte in EEPROM at address 0x3FF:
 
 - If it is set to 0xF0 bootloader will look for a bin file on the sdcard named
    firmware.bin and use it to flash the firmware then reset the byte to 0xFF so it
@@ -50,7 +50,7 @@ The bootloader looks for byte in eeprom at address 0x3FF:
 
 To generate a bin file you need issue the following command on you apps elf executable:
 
-```
+```shell
 avr-objcopy -I elf32-avr -O binary firmware.cpp.elf firmware.bin
 ```
 
@@ -59,22 +59,22 @@ file in you apps build directory.
 
 ### Using olimex usb to upload bootloader
 
-```
+```shell
 avrdude -c stk500v2 -p m2560 -P /dev/tty.usbmodemfd131 -B 500 -e -u -U lock:w:0x3F:m -U efuse:w:0xFD:m -U hfuse:w:0xD8:m -U efuse:w:0xFF:m -F
 ```
 
-```
+```shell
 avrdude -p m2560 -c stk500v2 -P /dev/tty.usbmodemfa131 -F -U flash:w:stk500boot.hex -b 115200 -B1 -U lock:w:0x0F:m
 ```
 
-```
+```shell
 avrdude -p m168 -c usbtiny -e -u -U lock:w:0x3f:m -U efuse:w:0x00:m -U hfuse:w:0xDD:m -U lfuse:w:0xFF:m
 ```
 
-```
+```shell
 avrdude -p m2560 -c stk500v2 -P /dev/tty.usbmodemfd131 -U flash:w:stk500boot_v2_mega2560.hex -U lock:w:0x0F:m -v
 ```
 
-```
+```shell
 avrdude -c stk500v2 -p m2560 -P /dev/tty.usbmodemfd131 -U lock:w:0x3F:m -U efuse:w:0xFD:m -U hfuse:w:0xD8:m -U lfuse:w:0xFF:m -e -v
 ```
